@@ -1,0 +1,16 @@
+/buffer_qgis.py
+/csvFile_merge.py
+/datafram_vs.py
+/geoserver_test.py
+/Include
+/insertDB.py
+/landmovehistFileContentsMod.py
+/landmovehistFilenameChange.py
+/landmovehist_search.py
+/Lib
+/pyvenv.cfg
+/Scripts
+/share
+/test.py
+/test2.py
+/__pycache__
