@@ -11,7 +11,7 @@ form_class = uic.loadUiType(os.getcwd() + '/ui/' + os.path.splitext(os.path.base
 #     base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
 #     return os.path.join(base_path, relative_path)
 
-# form = resource_path("ui/unzip.ui")
+# form = resource_path("ui/{0}".format(os.path.splitext(os.path.basename(__file__))[0] + '.ui'))
 # form_class = uic.loadUiType(form)[0]
 
 class WdgUnzip(QMainWindow, form_class): #QMainWindow와 ui를 변환한 class의 다중상속
@@ -23,6 +23,7 @@ class WdgUnzip(QMainWindow, form_class): #QMainWindow와 ui를 변환한 class�
 
     def initUI(self):
         self.setWindowTitle(self.tr('Unzip'))
+        self.setWindowIcon(QIcon(QPixmap(":WdgUnzip")))
         self.progressBar.setValue(0)
         
 

@@ -25,6 +25,7 @@ class WdgFileDivision(QMainWindow, form_class): #QMainWindow와 ui를 변환한 
 
     def initUI(self):
         self.setWindowTitle(self.tr('File Division'))
+        self.setWindowIcon(QIcon(QPixmap(":WdgFileDivision")))
         self.progressBar.setValue(0)
         self.txt_rm_text.setText('D')
                 

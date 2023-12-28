@@ -6,6 +6,13 @@ from PyQt5 import uic
 from PyQt5.QtGui import QIcon,QPixmap
 
 form_class = uic.loadUiType(os.getcwd() + '/ui/' + os.path.splitext(os.path.basename(__file__))[0] + '.ui')[0]
+# def resource_path(relative_path):
+#     """ Get absolute path to resource, works for dev and for PyInstaller """
+#     base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+#     return os.path.join(base_path, relative_path)
+
+# form = resource_path("ui/{0}".format(os.path.splitext(os.path.basename(__file__))[0] + '.ui'))
+# form_class = uic.loadUiType(form)[0]
 
 class WdgFileMerge(QMainWindow, form_class): #QMainWindow와 ui를 변환한 class의 다중상속
     def __init__(self): # 초기값 설정
@@ -16,6 +23,7 @@ class WdgFileMerge(QMainWindow, form_class): #QMainWindow와 ui를 변환한 cla
 
     def initUI(self):
         self.setWindowTitle(self.tr('File Merge'))
+        self.setWindowIcon(QIcon(QPixmap(":WdgFileMerge")))
         self.progressBar.setValue(0)
         
 
