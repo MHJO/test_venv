@@ -121,34 +121,29 @@ class WdgFileDivision(QMainWindow, form_class): #QMainWindow와 ui를 변환한 
 
             format1 = os.path.splitext(result)[1]
             outNm = os.path.basename(os.path.splitext(result)[0])
+            self.progressBar.setMaximum(len(chunks))
             for i, chunk in enumerate(chunks):
                 outputFile = f"{outdir}/{outNm}_{i}{format1}"
-                chunk.to_csv(outputFile, quoting=csv.QUOTE_NONE)
+                chunk.to_csv(outputFile, index=False, encoding='utf-8')
+                
+                # 큰 따옴표 제거
+                self.remove_doublequote(outputFile)
+                self.progressBar.setValue(i+1)
         except Exception as e:
             print (str(e))
 
-        # with open(result,'r') as f1:
-        #     lines = f1.readlines()
-
-        # cnt =0
-        # Fnt=1
-        # for line in lines:
-        #     format1 = os.path.splitext(result)[1]
-        #     fileNm = os.path.basename(os.path.splitext(result)[0])
-        #     outputFile = f"{outdir}/{fileNm}_{Fnt}{format1}"
-            
-        #     fw=open(outputFile,'a')    
-        #     fw.write(line)
-        #     fw.close()        
-
-        #     if cnt == dvline:
-        #         cnt=0
-        #         Fnt+=1
-        #     cnt+=1
-
     # endregion
+            
+    def remove_doublequote(self, file):
+        try:
+            with open(file, 'r', encoding='utf-8') as f:
+                lines = f.readlines()
 
-
+            with open(file, 'w') as f1:
+                for line in lines:
+                    f1.write(line.replace('"',''))
+        except Exception as e:
+            print (str(e))
     
     # region [특정 구문 값 포함 라인 제거]
     def del_value_line(self, inputFile, outdir):
@@ -189,40 +184,18 @@ class WdgFileDivision(QMainWindow, form_class): #QMainWindow와 ui를 변환한 
             outdir = os.path.dirname(output)
             outNm = os.path.basename(os.path.splitext(output)[0])
             format1 = os.path.splitext(result)[1]
+            self.progressBar.setMaximum(len(chunks))
             for i, chunk in enumerate(chunks):
                 # 각 분할된 파일에 헤더를 포함하여 저장합니다.
                 outputFile = f"{outdir}/{outNm}_{i}{format1}"
-                chunk.to_csv(outputFile, index=False, doublequote=False, escapechar='"', quoting=csv.QUOTE_NONE)
+                chunk.to_csv(outputFile, index=False, encoding='utf-8')
+
+                # 큰 따옴표 제거
+                self.remove_doublequote(outputFile)
+                self.progressBar.setValue(i+1)
 
         except Exception as e:
             print (str(e))
-
-        
-        # outdir = os.path.dirname(output)
-        # outNm = os.path.basename(os.path.splitext(output)[0])
-
-        # dvline = self.sb_line.value()
-
-        # with open(result, 'r') as f1:
-        #     lines = f1.readlines()
-
-        # line_count =0
-        # File_count=1
-        # for line in lines:
-        #     format1 = os.path.splitext(result)[1]
-        #     outputFile = f"{outdir}/{outNm}_{File_count}{format1}"
-
-        #     with open(outputFile, 'a') as fw:
-        #         fw.write(line)
-
-        #     if line_count == dvline:
-        #         line_count=0
-        #         File_count+=1
-        #     line_count+=1
-
-       
-
-
     # endregion
             
     def get_header(self, inputFile):
