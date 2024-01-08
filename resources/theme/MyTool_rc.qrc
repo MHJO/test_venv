@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="/">
+    <file alias="WdgUnzip">images/custom/WdgUnzip.png</file>
+    <file alias="WdgFileMerge">images/custom/WdgFileMerge.png</file>
+    <file alias="WdgFileDivision">images/custom/WdgFileDivision.png</file>
+    <file alias="WdgPIC">images/custom/WdgPIC.png</file>
+	  <file alias="windows_icon">images/custom/icon.ico</file>
+  </qresource>
+</RCC>
