@@ -5,6 +5,7 @@ import modules
 from modules import WdgUnzip
 from modules import WdgFileMerge
 from modules import WdgFileDivision
+from modules import WdgPIC
 
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon,QPixmap
@@ -28,6 +29,7 @@ class MyTool(QMainWindow, form_class): #QMainWindow와 ui를 변환한 class의 
         self.wdg_unzip = None
         self.wdg_filemerge = None
         self.wdgFileDivision = None
+        self.wdgPIC = None
 
         self.initUI()
         self.init()
@@ -42,11 +44,13 @@ class MyTool(QMainWindow, form_class): #QMainWindow와 ui를 변환한 class의 
         self.unzip = partial(self.show_widget,self.wdg_unzip,WdgUnzip.WdgUnzip())
         self.merge = partial(self.show_widget,self.wdg_filemerge,WdgFileMerge.WdgFileMerge())
         self.division = partial(self.show_widget,self.wdgFileDivision,WdgFileDivision.WdgFileDivision())
+        self.PIC = partial(self.show_widget,self.wdgPIC, WdgPIC.WdgPIC())
 
     def listener(self):
         self.btn_unzip.clicked.connect(self.unzip)
         self.btn_FileMerge.clicked.connect(self.merge)
         self.btn_Division.clicked.connect(self.division)
+        self.btn_pic.clicked.connect(self.PIC)
 
     def show_widget(self, widget, widget_class):
         try:
